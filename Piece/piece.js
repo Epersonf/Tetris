@@ -4,15 +4,19 @@ const pieces = [
   [[0, 0], [0, 1], [1, 1], [1, 2]]
 ];
 
+const colors = ["#ff33ff", "#ff3333", "#33ff33", "#3333ff"];
+
 class Piece {
   constructor(grid, x, y) {
     this.grid = grid;
     this.x = x;
     this.y = y;
+    
+    this.color = colors[Math.floor(Math.random() * colors.length)];
 
     this.squares = [];
     pieces[Math.floor(Math.random() * pieces.length)].forEach((pos) => {
-      this.squares.push(new Square(grid, this, pos[0], pos[1]));
+      this.squares.push(new Square(grid, this, pos[0], pos[1], this.color));
     });
 
     this.squares.forEach(e => {

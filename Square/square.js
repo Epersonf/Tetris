@@ -1,13 +1,14 @@
 class Square {
-  constructor(grid, piece, x, y) {
+  constructor(grid, piece, x, y, color) {
     this.grid = grid;
     this.piece = piece;
     this.x = x;
     this.y = y;
+    this.color = color;
   }
 
   draw() {
-    p5.fill(256);
+    p5.fill(this.color);
     const absolutePos = this.getAbsolutePos();
     p5.rect(absolutePos.x, absolutePos.y, grid.stepX, grid.stepY);
   }
