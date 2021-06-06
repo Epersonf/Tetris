@@ -7,21 +7,26 @@ class Grid {
     this.pieces = [];
     this.squares = new Array(divisionsX).fill(undefined).map(() => new Array(divisionsY).fill(undefined));
     this.spawnPiece();
+
+    //#region Gravity
     setInterval(() => {
       if (this.controlledPiece == undefined) return;
       this.controlledPiece.moveDown();
     }, 750);
+    //#endregion
 
+    //#region Inputs
     setInterval(() => {
       if (p5.keyIsDown(65))
         this.controlledPiece.moveX(-1);
 
       if (p5.keyIsDown(68))
         this.controlledPiece.moveX(1);
-        
+
       if (p5.keyIsDown(83))
         this.controlledPiece.moveDown();
     }, 100);
+    //#endregion Inputs
   }
 
   spawnPiece() {

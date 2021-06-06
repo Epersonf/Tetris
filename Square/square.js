@@ -17,33 +17,29 @@ class Square {
     this.grid.squares[gridPos.x][gridPos.y] = value;
   }
 
-  collisionDetectionBottom() {
-    if (this.grid.controlledPiece != this.piece) return;
-
-    if (this.piece.y + this.y >= this.grid.divisionsY - 1) {
-      this.piece.stop();
-      return;
-    }
+  canMoveDown() {
+    if (this.piece.y + this.y >= this.grid.divisionsY - 1)
+      return false;
 
     const gridPos = this.getAbsoluteGridPos();
     let neighbour = this.grid.squares[gridPos.x][gridPos.y + 1];
-    if (neighbour != undefined && neighbour.piece != this.piece) {
-      this.piece.stop();
-    }
+    if (neighbour != undefined && neighbour.piece != this.piece)
+      return false;
+    
+    return true;
   }
 
-  collisionDetectionX(dir) {
-    if (this.grid.controlledPiece != this.piece) return;
-
+  canMoveHor(dir) {
     const gridPos = this.getAbsoluteGridPos();
     if (gridPos.x + dir < 0 || gridPos.x + dir >= this.grid.divisionsX) {
-      this.piece.stop();
-      return;
+      return false;
     }
     
     let neighbour = this.grid.squares[gridPos.x + dir][gridPos.y];
     if (neighbour != undefined && neighbour.piece != this.piece)
-      this.piece.stop();
+      return false;
+
+    return true;
   }
 
   getAbsoluteGridPos() {

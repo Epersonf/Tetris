@@ -15,3 +15,8 @@ var p5 = new p5(p5 => {
 	}
 
 });
+
+function gameOver() {
+	delete grid;
+	grid = new Grid(width, height, 30, 20);
+}
