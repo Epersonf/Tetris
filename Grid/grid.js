@@ -25,6 +25,9 @@ class Grid {
 
       if (p5.keyIsDown(83))
         this.controlledPiece.moveDown();
+
+      if (p5.keyIsDown(87))
+        this.controlledPiece.rotate();
     }, 100);
     //#endregion Inputs
   }

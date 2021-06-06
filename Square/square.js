@@ -43,6 +43,13 @@ class Square {
     return true;
   }
 
+  rotate() {
+    this.x  = -this.x;
+    let store = this.y;
+    this.y = this.x;
+    this.x = store;
+  }
+
   getAbsoluteGridPos() {
     return {x: this.piece.x + this.x, y: this.piece.y + this.y};
   }

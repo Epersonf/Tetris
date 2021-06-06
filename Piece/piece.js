@@ -4,7 +4,7 @@ const pieces = [
   [[0, 0], [0, 1], [1, 1], [1, 2]]
 ];
 
-const colors = ["#ff33ff", "#ff3333", "#33ff33", "#3333ff"];
+const colors = ["#ff88ff", "#ff8888", "#88ff88", "#8888ff", "#ffff88"];
 
 class Piece {
   constructor(grid, x, y) {
@@ -53,6 +53,10 @@ class Piece {
     if (this.grid.controlledPiece == this)
       this.x += dir;
     this.squares.forEach(e => e.setGridPos(e));
+  }
+
+  rotate() {
+    this.squares.forEach(e => e.rotate());
   }
 
   stop() {
