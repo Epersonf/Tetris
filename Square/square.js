@@ -24,7 +24,7 @@ class Square {
 
     const gridPos = this.getAbsoluteGridPos();
     let neighbour = this.grid.squares[gridPos.x][gridPos.y + 1];
-    if (neighbour != undefined && neighbour.piece != this.piece)
+    if (neighbour != null && neighbour.piece != this.piece)
       return false;
     
     return true;
@@ -37,17 +37,36 @@ class Square {
     }
     
     let neighbour = this.grid.squares[gridPos.x + dir][gridPos.y];
-    if (neighbour != undefined && neighbour.piece != this.piece)
+    if (neighbour != null && neighbour.piece != this.piece)
       return false;
 
     return true;
   }
 
+  canRotate() {
+    const rotatedPos = this.getAbsoluteGridRotatedPos();
+    if (rotatedPos.x < 0 || rotatedPos.x > this.grid.divisionsX - 1)
+      return false;
+    if (rotatedPos.y < 0 || rotatedPos.y > this.grid.divisionsY - 1)
+      return false;
+    const destSquare = this.grid.squares[rotatedPos.x][rotatedPos.y];
+    if (destSquare != null && destSquare.piece != this.piece)
+      return false;
+    return true;
+  }
+
   rotate() {
-    this.x  = -this.x;
-    let store = this.y;
-    this.y = this.x;
-    this.x = store;
+    const rotatedPos = this.getRotatedPos();
+    this.x  = rotatedPos.x;
+    this.y  = rotatedPos.y;
+  }
+
+  getRotatedPos() {
+    return { x: this.y, y: -this.x };
+  }
+
+  getAbsoluteGridRotatedPos() {
+    return { x: this.piece.x + this.y, y: this.piece.y - this.x };
   }
 
   getAbsoluteGridPos() {

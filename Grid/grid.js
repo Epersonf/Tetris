@@ -5,7 +5,7 @@ class Grid {
     this.stepX = width/divisionsX;
     this.stepY = height/divisionsY;
     this.pieces = [];
-    this.squares = new Array(divisionsX).fill(undefined).map(() => new Array(divisionsY).fill(undefined));
+    this.squares = new Array(divisionsX).fill(null).map(() => new Array(divisionsY).fill(null));
     this.spawnPiece();
 
     //#region Gravity

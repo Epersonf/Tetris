@@ -31,7 +31,7 @@ class Piece {
   
   moveDown() {
     this.squares.forEach(e => {
-      e.setGridPos(undefined);
+      e.setGridPos(null);
       if (grid.controlledPiece != this) return;
       if (!e.canMoveDown())
         this.stop();
@@ -45,7 +45,7 @@ class Piece {
 
   moveX(dir) {
     this.squares.forEach(e => {
-      e.setGridPos(undefined);
+      e.setGridPos(null);
       if (grid.controlledPiece != this) return;
       if (!e.canMoveHor(dir))
         this.stop();
@@ -56,7 +56,13 @@ class Piece {
   }
 
   rotate() {
+    for (let i in this.squares) {
+      if (!this.squares[i].canRotate())
+        return;
+    }
+    this.squares.forEach(e => e.setGridPos(null));
     this.squares.forEach(e => e.rotate());
+    this.squares.forEach(e => e.setGridPos(e));
   }
 
   stop() {
