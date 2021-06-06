@@ -38,6 +38,15 @@ class Grid {
     this.pieces.forEach(e => e.draw());
   }
 
+  isRollFilled(y) {
+    if (y < 0 || y >= this.divisionsY) return false;
+    for (let i = 0; i < divisionsX; i++) {
+      if (this.squares[i][y] == undefined)
+        return false;
+    }
+    return true;
+  }
+
   getPos(x, y) {
     return {x: this.stepX * x, y: this.stepY * y};
   }

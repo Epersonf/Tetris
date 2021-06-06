@@ -26,14 +26,17 @@ class Piece {
   }
   
   moveDown() {
-    this.squares.forEach(e => e.setGridPos(undefined));
-    this.y++;
     this.squares.forEach(e => {
-      e.setGridPos(e);
+      e.setGridPos(undefined);
       if (grid.controlledPiece != this) return;
       if (!e.canMoveDown())
         this.stop();
     });
+
+    if (this.grid.controlledPiece == this)
+      this.y++;
+    
+    this.squares.forEach(e => e.setGridPos(e));
   }
 
   moveX(dir) {
