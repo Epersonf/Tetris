@@ -47,6 +47,7 @@ class Grid {
       this.removeRow(i);
       for (let j = i - 1; j >= 0; j--) {
         this.moveRowDown(j);
+        i++;
       }
     }
   }
