@@ -17,16 +17,16 @@ class Grid {
 
     //#region Inputs
     setInterval(() => {
-      if (p5.keyIsDown(65))
+      if (p5.keyIsDown(65) || p5.keyIsDown(37))
         this.controlledPiece.moveX(-1);
 
-      if (p5.keyIsDown(68))
+      if (p5.keyIsDown(68) || p5.keyIsDown(39))
         this.controlledPiece.moveX(1);
 
-      if (p5.keyIsDown(83))
+      if (p5.keyIsDown(83) || p5.keyIsDown(40))
         this.controlledPiece.moveDown();
 
-      if (p5.keyIsDown(87))
+      if (p5.keyIsDown(87) || p5.keyIsDown(38))
         this.controlledPiece.rotate();
     }, 100);
     //#endregion Inputs

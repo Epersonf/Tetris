@@ -12,7 +12,7 @@ var p5 = new p5(p5 => {
 	}
 
 	p5.draw = function(){
-		p5.background(0);
+		p5.background(80);
 		grid.update();
 	}
 

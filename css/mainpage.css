@@ -1,0 +1,44 @@
+:root {
+  --main-scure: #333;
+  --main-chiari: #fafafa;
+}
+
+body {
+  background-color: var(--main-scure);
+}
+
+header.header {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  color: var(--main-chiari);
+  margin-bottom: 10px;
+}
+
+header.header h1::after {
+  margin: 0 auto;
+  content: "";
+  display: block;
+  height: 1px;
+  animation-name: afterAnim;
+  animation-duration: 25s;
+  animation-iteration-count: infinite;
+  background-color: var(--main-chiari);
+}
+
+@keyframes afterAnim {
+  0% {
+    width: 0px;
+  }
+  60% {
+    width: 100px;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
+.container {
+  width: 100%;
+  text-align: center;
+}
