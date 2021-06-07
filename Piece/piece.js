@@ -49,8 +49,10 @@ class Piece {
       const e = this.squares[i];
       e.setGridPos(null);
       if (grid.controlledPiece != this) continue;
-      if (!e.canMoveHor(dir))
-        this.stop();
+      if (!e.canMoveHor(dir)) {
+        this.squares.forEach(e => e.setGridPos(e));
+        return;
+      }
     }
 
     if (this.grid.controlledPiece == this)

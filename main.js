@@ -1,5 +1,5 @@
-const width = 500;
-const height = 700;
+const width = 360;
+const height = 540;
 const divisionsX = 20;
 const divisionsY = 30;
 var grid;
