@@ -41,13 +41,39 @@ class Grid {
     this.pieces.forEach(e => e.draw());
   }
 
-  isRollFilled(y) {
+  verifyFilled() {
+    for (let i = this.divisionsY - 1; i >= 0; i--) {
+      if (!this.isRowFilled(i)) continue;
+      this.removeRow(i);
+      for (let j = i - 1; j >= 0; j--) {
+        this.moveRowDown(j);
+      }
+    }
+  }
+
+  moveRowDown(y) {
+    for (let i = 0; i < this.divisionsX; i++) {
+      const square = this.squares[i][y];
+      if (square == null) continue;
+      square.setGridPos(null);
+      square.y++;
+      square.setGridPos(square);
+    }
+  }
+
+  isRowFilled(y) {
     if (y < 0 || y >= this.divisionsY) return false;
-    for (let i = 0; i < divisionsX; i++) {
+    for (let i = 0; i < this.divisionsX; i++) {
       if (this.squares[i][y] == undefined)
         return false;
     }
     return true;
+  }
+
+  removeRow(y) {
+    for (let i = 0; i < this.divisionsX; i++) {
+      this.squares[i][y].remove();
+    }
   }
 
   getPos(x, y) {

@@ -61,6 +61,13 @@ class Square {
     this.y  = rotatedPos.y;
   }
 
+  remove() {
+    const gridPos = this.getAbsoluteGridPos();
+    this.grid.squares[gridPos.x][gridPos.y] = null;
+    this.piece.squares = this.piece.squares.filter((e) => e != this);
+    delete this;
+  }
+  
   getRotatedPos() {
     return { x: this.y, y: -this.x };
   }

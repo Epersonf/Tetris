@@ -30,12 +30,13 @@ class Piece {
   }
   
   moveDown() {
-    this.squares.forEach(e => {
+    for (let i in this.squares) {
+      const e = this.squares[i];
       e.setGridPos(null);
-      if (grid.controlledPiece != this) return;
+      if (grid.controlledPiece != this) continue;
       if (!e.canMoveDown())
         this.stop();
-    });
+    }
 
     if (this.grid.controlledPiece == this)
       this.y++;
@@ -44,12 +45,14 @@ class Piece {
   }
 
   moveX(dir) {
-    this.squares.forEach(e => {
+    for (let i in this.squares) {
+      const e = this.squares[i];
       e.setGridPos(null);
-      if (grid.controlledPiece != this) return;
+      if (grid.controlledPiece != this) continue;
       if (!e.canMoveHor(dir))
         this.stop();
-    });
+    }
+
     if (this.grid.controlledPiece == this)
       this.x += dir;
     this.squares.forEach(e => e.setGridPos(e));
@@ -59,13 +62,15 @@ class Piece {
     for (let i in this.squares) {
       if (!this.squares[i].canRotate())
         return;
+      this.squares[i].setGridPos(null);
     }
-    this.squares.forEach(e => e.setGridPos(null));
     this.squares.forEach(e => e.rotate());
     this.squares.forEach(e => e.setGridPos(e));
   }
 
   stop() {
+    this.squares.forEach(e => e.setGridPos(e));
+    this.grid.verifyFilled();
     this.grid.spawnPiece();
   }
 }
